@@ -1,9 +1,11 @@
 package com.skoushan.movies.app;
 
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SearchView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -19,7 +21,10 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+
+        menu.findItem(R.id.action_search).getActionView();
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
