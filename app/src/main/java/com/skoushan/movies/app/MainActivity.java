@@ -24,6 +24,7 @@ public class MainActivity extends ActionBarActivity {
 
         lv = (ListView) findViewById(R.id.listView);
         new GetMovies(inTheatresParams, this, lv).execute();
+
     }
 
     // http://www.androidhive.info/2013/11/android-working-with-action-bar/
