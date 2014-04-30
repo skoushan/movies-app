@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.skoushan.movies.app" >
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="19"></uses-sdk>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
 
     <application
         android:allowBackup="true"
@@ -18,6 +21,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.skoushan.movies.app.SearchResultsActivity"
+            android:label="@string/title_activity_search_results" >
         </activity>
     </application>
 
