@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.widget.ListView;
@@ -14,16 +15,23 @@ public class MainActivity extends ActionBarActivity {
 
     private ProgressDialog pDialog;
 
-    private static String inTheatresParams = "lists/movies/in_theaters.json?page_limit=10&page=1&country=us";
     ListView lv;
+
+    MovieListPagerAdapter mListPagerAdapter;
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        lv = (ListView) findViewById(R.id.listView);
-        new GetMovies(inTheatresParams, this, lv).execute();
+        // http://developer.android.com/design/building-blocks/tabs.html#scrollable
+        mListPagerAdapter = new MovieListPagerAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager.setAdapter(mListPagerAdapter);
+
+//        lv = (ListView) findViewById(R.id.listView);
+//        new GetMovies(inTheatresParams, this.getApplicationContext(), lv).execute();
 
     }
 

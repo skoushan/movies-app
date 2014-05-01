@@ -1,7 +1,7 @@
 package com.skoushan.movies.app;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
@@ -26,20 +26,20 @@ public class GetMovies extends AsyncTask<Object, Void, ArrayList<Map<String,Stri
 
     private String params;
     private ListView lv;
-    private Activity a;
+    private Context c;
 
     private ProgressDialog pDialog;
 
     /**
      *
      * @param params
-     * @param a
+     * @param c
      * @param lv
      */
-    public GetMovies(String params, Activity a, ListView lv){
+    public GetMovies(String params, Context c, ListView lv){
         super();
         this.params = params;
-        this.a = a;
+        this.c = c;
         this.lv = lv;
     }
 
@@ -47,10 +47,11 @@ public class GetMovies extends AsyncTask<Object, Void, ArrayList<Map<String,Stri
     protected void onPreExecute() {
         super.onPreExecute();
         // Showing progress dialog
-        pDialog = new ProgressDialog(a);
-        pDialog.setMessage("Loading...");
-        pDialog.setCancelable(false);
-        pDialog.show();
+        // TODO
+//        pDialog = new ProgressDialog(c);
+//        pDialog.setMessage("Loading...");
+//        pDialog.setCancelable(false);
+//        pDialog.show();
 
     }
 
@@ -103,8 +104,9 @@ public class GetMovies extends AsyncTask<Object, Void, ArrayList<Map<String,Stri
     protected void onPostExecute(ArrayList<Map<String,String>> result) {
         super.onPostExecute(result);
         // Dismiss the progress dialog
-        if (pDialog.isShowing())
-            pDialog.dismiss();
+        // TODO
+//        if (pDialog.isShowing())
+//            pDialog.dismiss();
         /**
          * Updating parsed JSON data into ListView
          * */
@@ -113,7 +115,7 @@ public class GetMovies extends AsyncTask<Object, Void, ArrayList<Map<String,Stri
 //                R.layout.list_item, new String[] { TITLE, THUMBNAIL}, new int[] { R.id.textView,
 //                R.id.imageView});
 
-        MovieListAdapter adapter = new MovieListAdapter(a.getApplicationContext(), R.layout.list_item, result);
+        MovieListAdapter adapter = new MovieListAdapter(c, R.layout.list_item, result);
 
         lv.setAdapter(adapter);
     }
