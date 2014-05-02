@@ -10,5 +10,6 @@
     <string name="API_base_URI">http://api.rottentomatoes.com/api/public/v1.0/</string>
     <string name="API_request">lists/movies/in_theaters.json</string>
     <string name="API_key">apikey=avmv5ydp2qu4scw4hr4ky7uz</string>
+    <string name="title_activity_movie_profile">MovieProfileActivity</string>
 
 </resources>

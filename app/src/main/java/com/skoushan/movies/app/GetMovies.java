@@ -21,7 +21,7 @@ public class GetMovies extends AsyncTask<Object, Void, ArrayList<Map<String,Stri
     private static String API_base_URI = "http://api.rottentomatoes.com/api/public/v1.0/";
     private static String API_key = "apikey=avmv5ydp2qu4scw4hr4ky7uz";
 
-    public static final String TITLE = "title", THUMBNAIL = "thumbnail";
+    public static final String TITLE = "title", THUMBNAIL = "thumbnail", ID = "id";
 
     private String params;
     private MovieListFragment lf;
@@ -77,6 +77,7 @@ public class GetMovies extends AsyncTask<Object, Void, ArrayList<Map<String,Stri
 
                     String title = c.getString(TITLE);
                     String thumbnail = c.getJSONObject("posters").getString(THUMBNAIL);
+                    String id = c.getString(ID);
 
                     // tmp hashmap for single movie
                     HashMap<String, String> movie = new HashMap<String, String>();
@@ -84,6 +85,7 @@ public class GetMovies extends AsyncTask<Object, Void, ArrayList<Map<String,Stri
                     // adding each child node to HashMap key => value
                     movie.put(TITLE, title);
                     movie.put(THUMBNAIL, thumbnail);
+                    movie.put(ID, id);
 
                     // adding contact to contact list
                     movieList.add(movie);
