@@ -1,12 +1,10 @@
 package com.skoushan.movies.app;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,33 +12,34 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Async task class to get json by making HTTP call
  * */
-public class GetMovies extends AsyncTask<Object, Void, ArrayList<HashMap<String,String>>> {
+public class GetMovies extends AsyncTask<Object, Void, ArrayList<Map<String,String>>> {
 
     private static String API_base_URI = "http://api.rottentomatoes.com/api/public/v1.0/";
     private static String API_key = "apikey=avmv5ydp2qu4scw4hr4ky7uz";
 
-    private static final String TITLE = "title", THUMBNAIL = "thumbnail";
+    public static final String TITLE = "title", THUMBNAIL = "thumbnail";
 
     private String params;
     private ListView lv;
-    private Activity a;
+    private Context c;
 
     private ProgressDialog pDialog;
 
     /**
      *
      * @param params
-     * @param a
+     * @param c
      * @param lv
      */
-    public GetMovies(String params, Activity a, ListView lv){
+    public GetMovies(String params, Context c, ListView lv){
         super();
         this.params = params;
-        this.a = a;
+        this.c = c;
         this.lv = lv;
     }
 
@@ -48,16 +47,17 @@ public class GetMovies extends AsyncTask<Object, Void, ArrayList<HashMap<String,
     protected void onPreExecute() {
         super.onPreExecute();
         // Showing progress dialog
-        pDialog = new ProgressDialog(a);
-        pDialog.setMessage("Loading...");
-        pDialog.setCancelable(false);
-        pDialog.show();
+        // TODO
+//        pDialog = new ProgressDialog(c);
+//        pDialog.setMessage("Loading...");
+//        pDialog.setCancelable(false);
+//        pDialog.show();
 
     }
 
     @Override
-    protected ArrayList<HashMap<String,String>> doInBackground(Object... args) {
-        ArrayList<HashMap<String,String>> movieList = new ArrayList<HashMap<String, String>>();
+    protected ArrayList<Map<String,String>> doInBackground(Object... args) {
+        ArrayList<Map<String,String>> movieList = new ArrayList<Map<String, String>>();
 
         // Creating service handler class instance
         ServiceHandler sh = new ServiceHandler();
@@ -101,18 +101,21 @@ public class GetMovies extends AsyncTask<Object, Void, ArrayList<HashMap<String,
     }
 
     @Override
-    protected void onPostExecute(ArrayList<HashMap<String,String>> result) {
+    protected void onPostExecute(ArrayList<Map<String,String>> result) {
         super.onPostExecute(result);
         // Dismiss the progress dialog
-        if (pDialog.isShowing())
-            pDialog.dismiss();
+        // TODO
+//        if (pDialog.isShowing())
+//            pDialog.dismiss();
         /**
          * Updating parsed JSON data into ListView
          * */
-        ListAdapter adapter = new SimpleAdapter(
-                a, result,
-                R.layout.list_item, new String[] { TITLE, THUMBNAIL}, new int[] { R.id.textView,
-                R.id.imageView});
+//        ListAdapter adapter = new SimpleAdapter(
+//                a, result,
+//                R.layout.list_item, new String[] { TITLE, THUMBNAIL}, new int[] { R.id.textView,
+//                R.id.imageView});
+
+        MovieListAdapter adapter = new MovieListAdapter(c, R.layout.list_item, result);
 
         lv.setAdapter(adapter);
     }

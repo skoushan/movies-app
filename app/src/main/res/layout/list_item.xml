@@ -5,16 +5,18 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="100dp"
-        android:id="@+id/imageView" />
+        android:id="@+id/movieThumbnail" />
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:id="@+id/textView"
-        android:gravity="center_vertical" />
+        android:id="@+id/movieDescription"
+        android:gravity="center_vertical"
+        android:alpha="1"
+        android:textColor="#ff000000" />
 
 </LinearLayout>
