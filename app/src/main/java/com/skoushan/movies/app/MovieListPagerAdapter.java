@@ -1,6 +1,6 @@
 package com.skoushan.movies.app;
 
-import android.os.Bundle;
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -9,8 +9,11 @@ import android.support.v4.app.FragmentPagerAdapter;
  * Created by dx166-xl on 2014-05-01.
  */
 public class MovieListPagerAdapter extends FragmentPagerAdapter {
-    public MovieListPagerAdapter(FragmentManager fm) {
+    Context c;
+
+    public MovieListPagerAdapter(FragmentManager fm, Context c) {
         super(fm);
+        this.c = c;
     }
     public static final String MOVIE_LISTS_KEY = "movie_lists";
     private String[] MOVIE_LISTS = {"Box Office", "In Theatres", "Upcoming", "Opening"};
@@ -23,12 +26,15 @@ public class MovieListPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = new MovieListFragment();
-        Bundle args = new Bundle();
+        MovieListFragment fragment = new MovieListFragment();
 
-        args.putString(MOVIE_LISTS_KEY, MOVIE_LISTS_PARAM[position]);
+        new GetMovies(MOVIE_LISTS_PARAM[position], c, fragment).execute();
 
-        fragment.setArguments(args);
+
+//        Bundle args = new Bundle();
+//        args.putString(MOVIE_LISTS_KEY, MOVIE_LISTS_PARAM[position]);
+//        fragment.setArguments(args);
+
         return fragment;
     }
 

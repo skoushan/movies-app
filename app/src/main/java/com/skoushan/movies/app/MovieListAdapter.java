@@ -28,6 +28,7 @@ public class MovieListAdapter extends ArrayAdapter<Map<String,String>>{
         super(context, resource, items);
         imageLoader = new ImageLoader(getContext());
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
 

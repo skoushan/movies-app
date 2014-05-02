@@ -26,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         // http://developer.android.com/design/building-blocks/tabs.html#scrollable
-        mListPagerAdapter = new MovieListPagerAdapter(getSupportFragmentManager());
+        mListPagerAdapter = new MovieListPagerAdapter(getSupportFragmentManager(),this);
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mListPagerAdapter);
 

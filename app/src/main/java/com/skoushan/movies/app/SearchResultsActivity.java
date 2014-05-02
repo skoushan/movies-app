@@ -1,24 +1,23 @@
 package com.skoushan.movies.app;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.ListView;
 
 
-public class SearchResultsActivity extends Activity {
+public class SearchResultsActivity extends FragmentActivity {
 
-    ListView lv;
+    MovieListFragment lf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
-        
+
         ActionBar actionBar = getActionBar();
 
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -38,8 +37,16 @@ public class SearchResultsActivity extends Activity {
         query = query.replace(' ', '+');
         Log.d("Query:", query);
 
-        lv = (ListView) findViewById(R.id.searchListView);
-        new GetMovies("movies.json?q=" + query, this, lv).execute();
+
+       // Bundle args = new Bundle();
+       // args.putString(MovieListPagerAdapter.MOVIE_LISTS_KEY, query);
+
+        //lf = new MovieListFragment();
+
+        lf = (MovieListFragment) getSupportFragmentManager().findFragmentById(R.id.movielistfragment);
+
+        //lf.setArguments(args);
+        new GetMovies("movies.json?q=" + query, this, lf).execute();
     }
 
 

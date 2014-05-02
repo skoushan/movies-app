@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,22 +24,21 @@ public class GetMovies extends AsyncTask<Object, Void, ArrayList<Map<String,Stri
     public static final String TITLE = "title", THUMBNAIL = "thumbnail";
 
     private String params;
-    private ListView lv;
+    private MovieListFragment lf;
     private Context c;
 
     private ProgressDialog pDialog;
 
     /**
-     *
-     * @param params
+     *  @param params
      * @param c
-     * @param lv
+     * @param lf
      */
-    public GetMovies(String params, Context c, ListView lv){
+    public GetMovies(String params, Context c, MovieListFragment lf){
         super();
         this.params = params;
         this.c = c;
-        this.lv = lv;
+        this.lf = lf;
     }
 
     @Override
@@ -117,7 +115,7 @@ public class GetMovies extends AsyncTask<Object, Void, ArrayList<Map<String,Stri
 
         MovieListAdapter adapter = new MovieListAdapter(c, R.layout.list_item, result);
 
-        lv.setAdapter(adapter);
+        lf.setListAdapter(adapter);
     }
 
 }
